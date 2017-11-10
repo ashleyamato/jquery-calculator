@@ -2,7 +2,6 @@ var resultArray = []
 
 function sum(str) {
   var finalSum = eval(str)
-  console.log('finalSum', typeof(finalSum))
   return finalSum
 }
 
@@ -44,7 +43,6 @@ $(document).ready(function() {
       screen.append('error')
     } else {
       sum(joinArray)
-      console.log(typeof(joinArray))
       screen.empty()
       screen.append(sum(joinArray))
     }
