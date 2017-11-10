@@ -1,7 +1,13 @@
+var resultArray = []
+
+function sum(str) {
+  var finalSum = eval(str)
+  console.log('finalSum', typeof(finalSum))
+  return finalSum
+}
+
 $(document).ready(function() {
   let screen = $('#screen')
-
-  var resultArray = []
 
   function appendButton() {
     let $target = $(event.target).context.innerText
@@ -26,20 +32,21 @@ $(document).ready(function() {
   }
 
   function equals() {
-    var result = resultArray.join('')
-    if (result.includes('/0')) {
+    var joinArray = resultArray.join('')
+    if (joinArray.includes('/0')) {
       screen.empty()
       screen.append('error')
-    } else if (result.endsWith('/') || result.endsWith('*') || result.endsWith('-') || result.endsWith('+')) {
+    } else if (joinArray.endsWith('/') || joinArray.endsWith('*') || joinArray.endsWith('-') || joinArray.endsWith('+')) {
       screen.empty()
       screen.append('error')
-    } else if (result.startsWith('/') || result.startsWith('*') || result.startsWith('+')) {
+    } else if (joinArray.startsWith('/') || joinArray.startsWith('*') || joinArray.startsWith('+')) {
       screen.empty()
       screen.append('error')
     } else {
-      var sum = eval(result)
+      sum(joinArray)
+      console.log(typeof(joinArray))
       screen.empty()
-      screen.append(sum)
+      screen.append(sum(joinArray))
     }
   }
 
@@ -47,3 +54,9 @@ $(document).ready(function() {
   $('#clear').click(clear)
   $('.buttons').click(appendButton)
 })
+
+module.exports = {
+  appendButton: appendButton,
+  clear: clear,
+  equals: equals,
+}
